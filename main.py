@@ -22,8 +22,11 @@ Cautam ultimul numar prim mai mic decat numarul dat
     :return: ultimul numar prim mai mic decat numarul dat
     """
     n = n - 1
-    while is_prime(n) == False:
-        n = n - 1
+    if n < 2:
+        print("nu e bun")
+    else:
+        while is_prime(n) is False:
+            n = n - 1
     return n
 
 
@@ -61,20 +64,53 @@ def test_get_perfect_squares():
     assert get_perfect_squares(-2, 10) == [0, 1, 4, 9]
 
 
+def is_palindrome(n):
+    """
+Determinam daca un numar dat este palindrom
+    :param n: numar luat ca string
+    :return: True daca este palindrom si False daca nu este palindrom
+    """
+    numar = str(n)
+    if numar == numar[::-1]:
+        return True
+    else:
+        return False
+
+
+def test_is_palindrome():
+    assert is_palindrome(123454321) is True
+    assert is_palindrome(123456765) is False
+    assert is_palindrome(567898765) is True
+    assert is_palindrome(9876789) is True
+
+
 def main():
-    print("Exercitiul 1.")
-    n = int(input("Adaugati un numar: "))
-    print("Ultimul numar prim mai mic decat numarul dat este: ")
-    print(get_largest_prime_below(n))
     test_get_largest_prime_below()
-    print("Exercitiul 2.")
-    print("Alegeti primul numar al unui interval: ")
-    start = int(input())
-    print("Alegeti ultimul numar al intervalului ales: ")
-    end = int(input())
-    print("Patratele perfecte din interval sunt: ")
-    print(get_perfect_squares(start, end))
     test_get_perfect_squares()
+    test_is_palindrome()
+    while True:
+        print("1. Aflam ultimul numar prim mai mic decat numarul dat. ")
+        print("2. Aflam toate patratele perfecte dintr-un interval dat. ")
+        print("3. Aflam daca numarul este palindrom. ")
+        print("x. Iesire")
+        optiune = input("Alege exercitiul:")
+        if optiune == "1":
+            n = int(input("Alegeti un numar: "))
+            print("Ultimul numai prim mai mic decat acesta este: ")
+            print(get_largest_prime_below(n))
+        elif optiune == "2":
+            start = int(input("Alege primul numar al unui interval: "))
+            end = int(input("Alege ultimul numar al intervalului ales: "))
+            print("Patratele perfecte din interval sunt: ")
+            print(get_perfect_squares(start, end))
+
+        elif optiune == "3":
+            n = input("Alege un numar: ")
+            print(is_palindrome(n))
+        elif optiune == "x":
+            break
+        else:
+            print("Reincercati")
 
 
 if __name__ == "__main__":
