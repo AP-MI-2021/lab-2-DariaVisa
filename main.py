@@ -10,7 +10,7 @@ def is_prime(n):
     if n < 2:
         return False
     else: 
-        for i in range(2, n-1):
+        for i in range(2, n//2 + 1):
             if n % i == 0:
                 return False
     return True
@@ -28,7 +28,7 @@ Cautam ultimul numar prim mai mic decat numarul dat
     else:
         while is_prime(n) is False:
             n = n - 1
-    return n
+        return n
 
 
 def test_get_largest_prime_below():
